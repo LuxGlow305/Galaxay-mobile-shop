@@ -1,0 +1,6 @@
+{
+  "name": "Galaxy Mobile Shop",
+  "description": "Inventory management, real-time POS sales tracking, low-stock alerts, billing invoices, customer records, and analytics dashboard for Galaxy Mobile & Repairing Centre.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
