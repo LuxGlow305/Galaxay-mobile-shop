@@ -267,6 +267,7 @@ export const InventoryView: React.FC = () => {
                         <div>
                           <h4 className="font-semibold text-slate-100 text-xs">{p.name}</h4>
                           <span className="text-[10px] text-cyan-400 font-semibold">{p.brand}</span>
+                          <p className="text-[9px] text-amber-400 font-medium font-serif mt-0.5">Returned from something (خریدی ہوئی چیز کی واپسی نہیں)</p>
                         </div>
                       </div>
                     </td>

@@ -24,7 +24,11 @@ import {
   Sparkles,
   CreditCard,
   UserCheck,
+  Calculator,
+  ArrowRightLeft,
 } from 'lucide-react';
+import { FinancialCalculatorModal } from './FinancialCalculatorModal';
+import { CashRegisterModal } from './CashRegisterModal';
 
 export const DigitalFinancialsView: React.FC = () => {
   const {
@@ -85,6 +89,8 @@ export const DigitalFinancialsView: React.FC = () => {
 
   // Topup Modal State
   const [showTopupModal, setShowTopupModal] = useState(false);
+  const [showCalcModal, setShowCalcModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [topupProvider, setTopupProvider] = useState<'easyPaisa' | 'jazzCash' | 'billFloat' | 'easyLoad' | 'eSahulat'>('easyPaisa');
   const [topupAmount, setTopupAmount] = useState<number | ''>('');
 
@@ -156,7 +162,7 @@ export const DigitalFinancialsView: React.FC = () => {
 
     setTimeout(() => {
       // Mock generated bill details based on consumer number
-      const mockNames = ['Chaudhry Ghulam Nabi', 'Mian Shahzad Ahmad', 'Hafiz Tanveer', 'Rana Waqas', 'Sardar Tariq'];
+      const mockNames = ['Zeeshan Ahmad', 'Sajid Ali', 'Zeeshan', 'Sajid'];
       const randomName = mockNames[Math.floor(Math.random() * mockNames.length)];
       const baseAmt = Math.floor(1500 + Math.random() * 8500);
 
@@ -338,16 +344,41 @@ export const DigitalFinancialsView: React.FC = () => {
           <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
             Instant EasyPaisa money transfers, JazzCash biometric cash-in/out & official utility bill payments (FEPCO, SNGPL, WASA, PTCL) with agent till balance tracking.
           </p>
+          <div className="mt-2 inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-serif font-bold text-amber-300">
+            <span>Returned from something</span>
+            <span>•</span>
+            <span>نوٹ: خریدی ہوئی چیز کی واپسی نہیںے۔</span>
+            <span>•</span>
+            <span>موبائل وارنٹی کمپنی کی ہے ہماری نہیں۔</span>
+          </div>
         </div>
 
-        {hasRole(['admin', 'manager']) && (
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
           <button
-            onClick={() => setShowTopupModal(true)}
-            className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-black px-4 py-2.5 rounded-2xl shadow-xl shadow-emerald-500/20 transition-all cursor-pointer text-xs shrink-0"
+            onClick={() => setShowCalcModal(true)}
+            className="flex items-center gap-2 bg-slate-900/90 border border-cyan-500/40 hover:bg-slate-800 text-cyan-300 font-bold px-3.5 py-2.5 rounded-2xl shadow-lg transition-all text-xs cursor-pointer"
           >
-            <Plus className="w-4 h-4" /> Top Up Agent Float
+            <Calculator className="w-4 h-4 text-cyan-400" />
+            <span>Calculator (کیلکولیٹر)</span>
           </button>
-        )}
+
+          <button
+            onClick={() => setShowRegisterModal(true)}
+            className="flex items-center gap-2 bg-slate-900/90 border border-amber-500/40 hover:bg-slate-800 text-amber-300 font-bold px-3.5 py-2.5 rounded-2xl shadow-lg transition-all text-xs cursor-pointer"
+          >
+            <ArrowRightLeft className="w-4 h-4 text-amber-400" />
+            <span>Cash Register / Galla (گلہ مینیجر)</span>
+          </button>
+
+          {hasRole(['admin', 'manager']) && (
+            <button
+              onClick={() => setShowTopupModal(true)}
+              className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-black px-4 py-2.5 rounded-2xl shadow-xl shadow-emerald-500/20 transition-all cursor-pointer text-xs"
+            >
+              <Plus className="w-4 h-4" /> Top Up Float
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Agent Balances Metric Cards */}
@@ -384,7 +415,7 @@ export const DigitalFinancialsView: React.FC = () => {
             <p className="text-xl font-black text-white font-mono">
               PKR {(agentBalances?.jazzCashBalance ?? 0).toLocaleString()}
             </p>
-            <p className="text-[10px] text-slate-400 mt-0.5">Till: 0308-7014787</p>
+            <p className="text-[10px] text-slate-400 mt-0.5">Till: 0300-8929016 (Auto Till)</p>
           </div>
         </div>
 
@@ -560,29 +591,75 @@ export const DigitalFinancialsView: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
-                  Customer Phone Number *
-                </label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="text-xs font-semibold text-slate-300">
+                    Customer Phone Number *
+                  </label>
+                  {(() => {
+                    const clean = senderPhone.replace(/\D/g, '');
+                    if (clean.length >= 4) {
+                      const pfx = clean.slice(0, 4);
+                      if (['0300', '0301', '0302', '0303', '0304', '0305', '0306', '0307', '0308', '0309', '0320', '0321', '0322', '0323', '0324'].includes(pfx)) {
+                        return <span className="text-[10px] text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/30">⚡ Auto: JazzCash</span>;
+                      }
+                      if (['0340', '0341', '0342', '0343', '0344', '0345', '0346', '0347', '0348', '0349'].includes(pfx)) {
+                        return <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/30">⚡ Auto: EasyPaisa</span>;
+                      }
+                      if (['0310', '0311', '0312', '0313', '0314', '0315', '0316', '0317', '0318', '0319'].includes(pfx)) {
+                        return <span className="text-[10px] text-cyan-400 font-bold bg-cyan-500/10 px-2 py-0.5 rounded-md border border-cyan-500/30">⚡ Auto: Zong</span>;
+                      }
+                      if (['0330', '0331', '0332', '0333', '0334', '0335', '0336', '0337'].includes(pfx)) {
+                        return <span className="text-[10px] text-orange-400 font-bold bg-orange-500/10 px-2 py-0.5 rounded-md border border-orange-500/30">⚡ Auto: Ufone</span>;
+                      }
+                    }
+                    return null;
+                  })()}
+                </div>
                 <input
                   type="text"
                   required
                   placeholder="e.g. 0300-8929016"
                   value={senderPhone}
-                  onChange={(e) => setSenderPhone(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    const digits = val.replace(/\D/g, '').slice(0, 11);
+                    const formatted = digits.length > 4 ? `${digits.slice(0, 4)}-${digits.slice(4)}` : digits;
+                    setSenderPhone(formatted);
+                  }}
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-500 font-mono"
                 />
               </div>
 
               {trxType === 'Transfer' && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
-                    Receiver Account / Mobile No
-                  </label>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Receiver Account / Mobile No
+                    </label>
+                    {(() => {
+                      const clean = receiverPhone.replace(/\D/g, '');
+                      if (clean.length >= 4) {
+                        const pfx = clean.slice(0, 4);
+                        if (['0300', '0301', '0302', '0303', '0304', '0305', '0306', '0307', '0308', '0309', '0320', '0321', '0322', '0323', '0324'].includes(pfx)) {
+                          return <span className="text-[10px] text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/30">⚡ Auto: JazzCash Account</span>;
+                        }
+                        if (['0340', '0341', '0342', '0343', '0344', '0345', '0346', '0347', '0348', '0349'].includes(pfx)) {
+                          return <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/30">⚡ Auto: EasyPaisa Account</span>;
+                        }
+                      }
+                      return null;
+                    })()}
+                  </div>
                   <input
                     type="text"
                     placeholder="e.g. 0302-1234567"
                     value={receiverPhone}
-                    onChange={(e) => setReceiverPhone(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      const digits = val.replace(/\D/g, '').slice(0, 11);
+                      const formatted = digits.length > 4 ? `${digits.slice(0, 4)}-${digits.slice(4)}` : digits;
+                      setReceiverPhone(formatted);
+                    }}
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-500 font-mono"
                   />
                 </div>
@@ -1276,6 +1353,22 @@ export const DigitalFinancialsView: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* EasyPaisa & JazzCash Calculator Modal */}
+      <FinancialCalculatorModal
+        isOpen={showCalcModal}
+        onClose={() => setShowCalcModal(false)}
+        onSelectAmount={(calculatedAmt) => {
+          handleAmountChange(calculatedAmt);
+          setShowCalcModal(false);
+        }}
+      />
+
+      {/* Cash Register / Galla Management Modal */}
+      <CashRegisterModal
+        isOpen={showRegisterModal}
+        onClose={() => setShowRegisterModal(false)}
+      />
     </div>
   );
 };

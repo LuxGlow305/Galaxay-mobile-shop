@@ -125,7 +125,10 @@ export const InvoiceModal: React.FC = () => {
                   <tr key={idx} className="text-slate-300">
                     <td className="py-2 pr-2">
                       <p className="font-sans font-medium text-slate-200 text-xs">{item.name}</p>
-                      <span className="text-[10px] text-slate-500">[{item.brand}]</span>
+                      <div className="flex items-center gap-2 text-[10px]">
+                        <span className="text-slate-500">[{item.brand}]</span>
+                        <span className="text-amber-400 font-medium font-serif">Returned from something (خریدی ہوئی چیز کی واپسی نہیں)</span>
+                      </div>
                     </td>
                     <td className="py-2 text-center text-slate-400">{item.qty}</td>
                     <td className="py-2 text-right text-slate-400">{item.unitPrice}</td>
@@ -161,14 +164,16 @@ export const InvoiceModal: React.FC = () => {
           </div>
 
           {/* Footer Terms */}
-          <div className="pt-4 border-t border-dashed border-slate-800 text-center text-[11px] text-slate-400 space-y-1">
-            <p className="font-semibold text-slate-300">
-              توجہ فرماویں: خریداری کے بعد 3 دن کی چیکنگ وارنٹی دی جاتی ہے
+          <div className="pt-4 border-t border-dashed border-slate-800 text-center text-[11px] text-slate-400 space-y-1.5">
+            <div className="p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl space-y-1 text-center">
+              <p className="font-bold text-amber-300 text-xs">Returned from something</p>
+              <p className="font-serif text-amber-400 text-xs font-bold">نوٹ: خریدی ہوئی چیز کی واپسی نہیںے۔</p>
+              <p className="font-serif text-slate-300 text-[11px]">موبائل وارنٹی کمپنی کی ہے ہماری نہیں۔</p>
+            </div>
+            <p className="text-[10px] text-amber-400/90 font-serif font-semibold">
+              نوٹ: خریدی ہوئی چیز کی واپسی یا تبدیلی نہیں ہو گی۔ (Goods once sold cannot be returned or exchanged)
             </p>
-            <p className="text-[10px] text-slate-500">
-              Note: 3 days checking warranty on fast chargers and adapters. Burned/damaged items excluded.
-            </p>
-            <div className="pt-2 text-[10px] font-mono text-cyan-400">
+            <div className="pt-1 text-[10px] font-mono text-cyan-400">
               *** Thank You for Shopping at Galaxy Mobile ***
             </div>
           </div>

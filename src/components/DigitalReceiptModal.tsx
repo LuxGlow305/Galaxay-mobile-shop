@@ -318,7 +318,12 @@ Help Line: ${trx.nadraDetails.helpLine}`;
             </div>
 
             {/* Footer Metadata */}
-            <div className="pt-2 text-center text-[10px] text-slate-500 space-y-0.5 border-t border-dashed border-slate-800">
+            <div className="pt-2 text-center text-[10px] text-slate-500 space-y-1 border-t border-dashed border-slate-800">
+              <div className="p-2 bg-amber-500/10 border border-amber-500/20 rounded-xl space-y-0.5 text-center my-1">
+                <p className="font-bold text-amber-300 text-xs">Returned from something</p>
+                <p className="font-serif text-amber-400 text-xs font-bold">نوٹ: خریدی ہوئی چیز کی واپسی نہیںے۔</p>
+                <p className="font-serif text-slate-300 text-[10px]">موبائل وارنٹی کمپنی کی ہے ہماری نہیں۔</p>
+              </div>
               <p>Agent Operator: {trx.agentName} | Station: Counter 1</p>
               <p>Date & Time: {new Date(trx.createdAt).toLocaleString()}</p>
               <p className="font-bold text-slate-400 mt-1">

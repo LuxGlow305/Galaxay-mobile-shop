@@ -234,6 +234,24 @@ export interface AgentBalances {
   todayCommissionEarned: number;
 }
 
+export interface CashExchangeRecord {
+  id: string;
+  type: 'Customer Change / Exchange' | 'Neighbor Shop Exchange' | 'Drawer Cash In' | 'Drawer Cash Out' | 'Expense';
+  givenAmount: number;
+  returnedNotesDetail: string;
+  performedBy: string;
+  timestamp: string;
+  notes?: string;
+}
+
+export interface CashRegisterState {
+  openingBalance: number;
+  openingTime: string;
+  manualExpenses: { id: string; title: string; amount: number; category: string; time: string; person: string }[];
+  manualCashIn: { id: string; title: string; amount: number; category: string; time: string; person: string }[];
+  exchangeRecords: CashExchangeRecord[];
+}
+
 // Mobile Repair Scheme Management Types
 export type RepairStatus =
   | 'Received'

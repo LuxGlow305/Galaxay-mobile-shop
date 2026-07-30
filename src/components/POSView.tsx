@@ -218,6 +218,9 @@ export const POSView: React.FC = () => {
                   <h4 className="font-semibold text-xs text-slate-100 line-clamp-2 leading-snug">
                     {product.name}
                   </h4>
+                  <p className="text-[9px] text-amber-400 font-medium font-serif mt-0.5">
+                    Returned from something (خریدی ہوئی چیز کی واپسی نہیں)
+                  </p>
                 </div>
 
                 <div className="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between">
@@ -304,6 +307,7 @@ export const POSView: React.FC = () => {
                       <span className="font-mono text-[11px] text-slate-400">
                         PKR {item.unitPrice} x {item.qty}
                       </span>
+                      <p className="text-[9px] text-amber-400 font-serif font-medium truncate">Returned from something (خریدی ہوئی چیز کی واپسی نہیں)</p>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">

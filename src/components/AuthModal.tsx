@@ -107,8 +107,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           <div className="p-3 bg-slate-800/40 rounded-xl text-[10px] text-slate-400 space-y-0.5">
             <p className="font-bold text-slate-300">🔑 Demo Access PIN Codes:</p>
             <p>• Admin (Muhammad Sajid): <span className="font-mono text-cyan-400 font-bold">1234</span></p>
-            <p>• Store Manager (Ali Raza): <span className="font-mono text-cyan-400 font-bold">5678</span></p>
-            <p>• Cashier (Usman Kassim): <span className="font-mono text-cyan-400 font-bold">0000</span></p>
+            <p>• Store Manager (Zeeshan): <span className="font-mono text-cyan-400 font-bold">5678</span></p>
+            <p>• Cashier (Sajid): <span className="font-mono text-cyan-400 font-bold">0000</span></p>
           </div>
 
           <button

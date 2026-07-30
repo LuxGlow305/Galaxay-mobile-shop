@@ -149,11 +149,19 @@ export const LoanStatementModal: React.FC = () => {
             </table>
           </div>
 
-          {/* Signatures */}
-          <div className="pt-8 flex justify-between text-[10px] text-slate-500">
-            <div className="border-t border-slate-300 pt-1 w-24 text-center">Borrower Sign</div>
-            <div className="border-t border-slate-300 pt-1 w-24 text-center">Guarantor Sign</div>
-            <div className="border-t border-slate-300 pt-1 w-24 text-center">Shop Stamp</div>
+          {/* Signatures & Return Policy */}
+          <div className="pt-4 space-y-3">
+            <div className="p-2 bg-amber-50 border border-amber-200 rounded-xl space-y-0.5 text-center text-[10px]">
+              <p className="font-bold text-amber-800 text-xs">Returned from something</p>
+              <p className="font-serif text-amber-900 text-xs font-bold">نوٹ: خریدی ہوئی چیز کی واپسی نہیںے۔</p>
+              <p className="font-serif text-slate-700 text-[10px]">موبائل وارنٹی کمپنی کی ہے ہماری نہیں۔</p>
+            </div>
+
+            <div className="flex justify-between text-[10px] text-slate-500 pt-2">
+              <div className="border-t border-slate-300 pt-1 w-24 text-center">Borrower Sign</div>
+              <div className="border-t border-slate-300 pt-1 w-24 text-center">Guarantor Sign</div>
+              <div className="border-t border-slate-300 pt-1 w-24 text-center">Shop Stamp</div>
+            </div>
           </div>
         </div>
       </div>

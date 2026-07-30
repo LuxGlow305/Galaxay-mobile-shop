@@ -129,7 +129,12 @@ export const RepairReceiptModal: React.FC = () => {
           </div>
 
           {/* Warranty & Terms */}
-          <div className="text-[10px] text-slate-500 space-y-1 border-t pt-2 border-slate-200">
+          <div className="text-[10px] text-slate-500 space-y-1.5 border-t pt-2 border-slate-200">
+            <div className="p-2 bg-amber-50 border border-amber-200 rounded-xl space-y-0.5 text-center">
+              <p className="font-bold text-amber-800 text-xs">Returned from something</p>
+              <p className="font-serif text-amber-900 text-xs font-bold">نوٹ: خریدی ہوئی چیز کی واپسی نہیںے۔</p>
+              <p className="font-serif text-slate-700 text-[10px]">موبائل وارنٹی کمپنی کی ہے ہماری نہیں۔</p>
+            </div>
             <p className="font-bold text-slate-700 flex items-center gap-1">
               <ShieldCheck className="w-3 h-3 text-emerald-600" /> {ticket.warrantyDays} Days Repair Warranty Included
             </p>

@@ -373,7 +373,7 @@ export const RepairLabView: React.FC = () => {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Muhammad Arslan"
+                    placeholder="e.g. Zeeshan Ahmad"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500"
@@ -517,8 +517,8 @@ export const RepairLabView: React.FC = () => {
                     className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-cyan-500"
                   >
                     <option value="Muhammad Sajid (Master Tech)">Muhammad Sajid (Master Tech)</option>
-                    <option value="Ali Raza (Hardware Specialist)">Ali Raza (Hardware Specialist)</option>
-                    <option value="Usman Kassim (Software Engineer)">Usman Kassim (Software Engineer)</option>
+                    <option value="Zeeshan (Hardware Specialist)">Zeeshan (Hardware Specialist)</option>
+                    <option value="Sajid (Software Engineer)">Sajid (Software Engineer)</option>
                   </select>
                 </div>
 

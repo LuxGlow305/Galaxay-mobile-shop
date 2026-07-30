@@ -495,7 +495,7 @@ export const LoansInstallmentsView: React.FC = () => {
                     <label className="block text-[11px] text-slate-400 mb-1">Guarantor Name</label>
                     <input
                       type="text"
-                      placeholder="e.g. Chaudhry Ghulam Nabi"
+                      placeholder="e.g. Sajid Ali"
                       value={guarantorName}
                       onChange={(e) => setGuarantorName(e.target.value)}
                       className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-purple-500"
